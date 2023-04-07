@@ -1,0 +1,36 @@
+﻿<Window x:Class="MarciPad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarciPad"
+        mc:Ignorable="d"
+        Title="MarciPad" Height="450" Width="795.473"
+        Loaded="Window_Loaded">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save" Executed="SaveCommand_Executed"></CommandBinding>
+        <CommandBinding Command="Open" Executed="OpenCommand_Executed"></CommandBinding>
+    </Window.CommandBindings>
+
+    <ScrollViewer>
+    <Grid>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem x:Name="_Open" Header="_Open"  Command="Open"/>
+                <MenuItem x:Name="_Save" Header="_Save" Command="Save"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem x:Name="_Copy" Header="Copy"  />
+                <MenuItem x:Name="_Cut" Header="Cut"  />
+                <MenuItem x:Name="_Paste" Header="Paste" />
+                <MenuItem x:Name="_Find" Header="Find"  />
+                <MenuItem x:Name="_Replace" Header="Replace" />
+            </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Change Theme"></MenuItem>
+                </MenuItem>
+        </Menu>
+        <TextBox Name ="textBox" Margin="2,20,0,0" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap"></TextBox>
+    </Grid>
+    </ScrollViewer>
+</Window>
