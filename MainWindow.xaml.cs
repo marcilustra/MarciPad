@@ -11,19 +11,24 @@ namespace MarciPad
     /// </summary>
     public partial class MainWindow : Window
     {
-        public bool saved;
+        public static bool saved, openedExisitingFile;
         public string filename;
+         public static MenuItem openMenuItme, saveMenuItme, closeMenuItme;
         public MainWindow()
         {
             InitializeComponent();
+            saved = false;
+            openedExisitingFile = false;
         }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CommandManager.InvalidateRequerySuggested();
-            MenuItem openMenuItme = (MenuItem)FindName("_Open");
-            MenuItem saveMenuItme = (MenuItem)FindName("_Save");
+            openMenuItme = (MenuItem)FindName("_Open");
+            saveMenuItme = (MenuItem)FindName("_Save");
+            closeMenuItme = (MenuItem)FindName("_Close");
             openMenuItme.IsEnabled = true;
-            saveMenuItme.IsEnabled = true;
+            saveMenuItme.IsEnabled = false;
+            closeMenuItme.IsEnabled = false;
         }
 
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -38,9 +43,13 @@ namespace MarciPad
             bool? result = openFileDialog.ShowDialog();
             if (result == true)
             {
-                _ = openFileDialog.FileName;
+                textBox.Clear();
+                filename = openFileDialog.FileName;
                 textBox.Text = File.ReadAllText(openFileDialog.FileName);
             }
+            openedExisitingFile = true;
+            saveMenuItme.IsEnabled = true;
+            closeMenuItme.IsEnabled = true;
         }
 
 
@@ -55,7 +64,7 @@ namespace MarciPad
                     Filter = "text document (.txt)|*.txt"
                 };
 
-                if (saveFileDialog.ShowDialog() == true && saved == false)
+                if (saveFileDialog.ShowDialog() == true && saved == false && openedExisitingFile == false)
                 {
                     filename = saveFileDialog.FileName;
                     File.WriteAllText(filename, textBox.Text);
@@ -65,7 +74,30 @@ namespace MarciPad
             else
             {
                 saved = true;
-                File.WriteAllText(filename, textBox.Text);
+                if(!string.IsNullOrEmpty(textBox.Text))
+                {
+                    File.WriteAllText(filename, textBox.Text);
+                }
+                else
+                {
+                    MessageBoxResult emptyTextBoxMessage = MessageBox.Show("Nothing to save.");
+                }
+            }
+        }
+
+        private void CloseCurrentDocument(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult areYouSureMessageBox = MessageBox.Show("Are you sure you want to close this document? " +
+                "Make sure you have saved it first!", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if( areYouSureMessageBox == MessageBoxResult.Yes)
+            {
+                textBox.Clear();
+                filename = string.Empty;
+                saved = false;
+            }
+            else
+            {
+                return;
             }
         }
     }
