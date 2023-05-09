@@ -1,0 +1,15 @@
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.csproj.AssemblyReference.cache
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MainWindow.g.cs
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\App.g.cs
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad_MarkupCompile.cache
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad_MarkupCompile.lref
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\bin\Debug\MarciPad.exe.config
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\bin\Debug\MarciPad.exe
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\bin\Debug\MarciPad.pdb
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MainWindow.baml
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.g.resources
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.Properties.Resources.resources
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.csproj.GenerateResource.cache
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.csproj.CoreCompileInputs.cache
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.exe
+C:\Users\Edgar Thorne\source\repos\MarciPad\MarciPad\obj\Debug\MarciPad.pdb
