@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Win32;
 
 namespace MarciPad
@@ -31,7 +33,7 @@ namespace MarciPad
             closeMenuItme.IsEnabled = false;
             textBox.Focus();
         }
-
+        #region OPEN, SAVE, CLOSE
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog
@@ -53,8 +55,22 @@ namespace MarciPad
             saveMenuItme.IsEnabled = true;
             closeMenuItme.IsEnabled = true;
         }
-
-
+        private void CloseCurrentDocument(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult areYouSureMessageBox = MessageBox.Show("Are you sure you want to close this document? " +
+                "Make sure you have saved it first!", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (areYouSureMessageBox == MessageBoxResult.Yes)
+            {
+                textBox.Clear();
+                filename = string.Empty;
+                saved = false;
+                Title = "MarciPad";
+            }
+            else
+            {
+                return;
+            }
+        }
         private void SaveCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(filename))
@@ -72,6 +88,9 @@ namespace MarciPad
                     File.WriteAllText(filename, textBox.Text);
                     Title = Path.GetFileName(filename);
                 }
+                openedExisitingFile = true;
+                saveMenuItme.IsEnabled = true;
+                closeMenuItme.IsEnabled = true;
             }
             
             else
@@ -87,7 +106,8 @@ namespace MarciPad
                 }
             }
         }
-
+        #endregion
+        #region COPY CUT PASTE
         private void Cut_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (textBox.SelectedText != "")
@@ -101,30 +121,23 @@ namespace MarciPad
         {
              Clipboard.SetText(textBox.SelectedText);
         }
-
-        private void CloseCurrentDocument(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult areYouSureMessageBox = MessageBox.Show("Are you sure you want to close this document? " +
-                "Make sure you have saved it first!", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if( areYouSureMessageBox == MessageBoxResult.Yes)
-            {
-                textBox.Clear();
-                filename = string.Empty;
-                saved = false;
-                Title = "MarciPad";
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private void Paste_Executed( object sender, ExecutedRoutedEventArgs e)
+        private void Paste_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             if (Clipboard.ContainsText())
             {
                 textBox.Paste();
             }
         }
+        #endregion
+        #region THEMES
+        private void Darken_Click(object sender, RoutedEventArgs e)
+        {
+            Themes.DarkTheme(textBox);
+        }
+        private void Light_Click(object sender, RoutedEventArgs e)
+        {
+            Themes.LightTheme(textBox);
+        }
+        #endregion
     }
 }
