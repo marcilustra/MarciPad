@@ -29,10 +29,11 @@ namespace MarciPad
             saveMenuItme = (MenuItem)FindName("_Save");
             closeMenuItme = (MenuItem)FindName("_Close");
             openMenuItme.IsEnabled = true;
-            saveMenuItme.IsEnabled = false;
+            saveMenuItme.IsEnabled = true;
             closeMenuItme.IsEnabled = false;
             textBox.Focus();
         }
+
         #region OPEN, SAVE, CLOSE
         private void OpenCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -52,7 +53,6 @@ namespace MarciPad
                 Title = Path.GetFileName(filename);
             }
             openedExisitingFile = true;
-            saveMenuItme.IsEnabled = true;
             closeMenuItme.IsEnabled = true;
         }
         private void CloseCurrentDocument(object sender, RoutedEventArgs e)
@@ -137,6 +137,22 @@ namespace MarciPad
         private void Light_Click(object sender, RoutedEventArgs e)
         {
             Themes.LightTheme(textBox);
+        }
+        #endregion
+        #region CLOSE
+        private void Exit_App(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult areYouSureMessageBox = MessageBox.Show("Are you sure you want to close this document? " +
+               "Make sure you have saved it first!", "Are you sure?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (areYouSureMessageBox == MessageBoxResult.Yes)
+            {
+                Close();
+            }
+            else
+            {
+                return;
+            }
+            
         }
         #endregion
     }

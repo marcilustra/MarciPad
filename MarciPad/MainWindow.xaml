@@ -28,6 +28,7 @@
                 <MenuItem x:Name="_Open" Header="_Open"  Command="Open"/>
                 <MenuItem x:Name="_Save" Header="_Save" Command="Save"/>
                 <MenuItem x:Name="_Close" Header="_Close" Click="CloseCurrentDocument"/>
+                <MenuItem x:Name="_Exit" Header="Exit" Click="Exit_App"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem x:Name="_Copy" Header="Copy"  Command="Copy"/>

@@ -18,14 +18,15 @@ namespace MarciPad
             TextBox current = textbox;
             current.Background = myCustom; ;
             current.Foreground = Brushes.Ivory;
+            current.CaretBrush = Brushes.Ivory;
         }
 
         public static void LightTheme(TextBox textbox)
         {
             LinearGradientBrush myCustom = new LinearGradientBrush();
 
-            GradientStop tops = new GradientStop(Color.FromArgb(255, 226, 226, 226), 0);
-            GradientStop bottom = new GradientStop(Color.FromRgb(255, 255, 255), 1);
+            GradientStop tops = new GradientStop(Color.FromRgb(255, 255, 255), 1);
+            GradientStop bottom = new GradientStop(Color.FromArgb(255, 226, 226, 226), 0);
 
             myCustom.GradientStops.Add(tops);
             myCustom.GradientStops.Add(bottom);
@@ -33,6 +34,7 @@ namespace MarciPad
             TextBox current = textbox;
             current.Background = myCustom;
             current.Foreground = Brushes.Black;
+            current.CaretBrush = Brushes.Black;
         }
     }
 }
